@@ -27,6 +27,4 @@ svg_build.generate_path(tri)
 tri = shape.triangle(r[0],r[1],200)
 svg_build.generate_path(tri)
 
-print("hello")
-
 svg_build.end()
