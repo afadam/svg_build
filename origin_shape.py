@@ -29,4 +29,3 @@ svg_build.generate_path(tri)
 
 svg_build.end()
 
-print("finished")
