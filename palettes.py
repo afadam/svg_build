@@ -17,6 +17,6 @@ palettes = [
 
 def r_colour():
 	colour = hex(random.randrange(1,16777215))
-	colour_string = str(colour)
+	colour_string = '"' + str(colour) + '"'
 	
 plt_r = [r_colour(), r_colour(), r_colour(), r_colour(), r_colour()] 

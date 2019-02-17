@@ -71,8 +71,8 @@ def polygon(
 
 	return pt_list
 	
-def center_polygon(
-	origin, sides, height, orient=90
+def centre_polygon(
+	origin, sides, height, orient=0
 ):
 	# create list to hold points of root line
 	rts = [[0,0],[0,0]]
@@ -80,7 +80,7 @@ def center_polygon(
 	# find internal angle of polygon, divide by two
 	angle = 0.5 * math.radians(360 / sides)
 	# convert orientation to radians
-	orient = math.radians(orient)
+	orient = math.radians(orient) + math.pi/2
 	
 	# find root points using two back to back triangles of given height
 	rts[0][0] = origin[0] + (height * math.cos(orient - angle))
@@ -195,17 +195,23 @@ def move(
 			pt[1] = pt[1] + y_shift
 
 def rotate(
-	pt_list, rad, centre
+	pt_list, degree, axis=[0,0]
 ):
-	cos_t = math.cos(rad)	# cos theta 
-	sin_t = math.sin(rad)	# sin theta
+	print(pt_list)
+	if axis[1] == 0 and axis[0] == 0:
+		axis = centre(pt_list)
+	
+	angle = math.pi/180 * degree
+	cos_t = math.cos(angle)	# cos theta 
+	sin_t = math.sin(angle)	# sin theta
 		
 	for pt in pt_list:
-		x_pt = (cos_t * (pt[0] - centre[0])) - (sin_t * (pt[1] - centre[1])) + centre[0]
-		y_pt = (sin_t * (pt[0] - centre[0])) + (cos_t * (pt[1] - centre[1])) + centre[1]
+		x_pt = (cos_t * (pt[0] - axis[0])) - (sin_t * (pt[1] - axis[1])) + axis[0]
+		y_pt = (sin_t * (pt[0] - axis[0])) + (cos_t * (pt[1] - axis[1])) + axis[1]
 
 		pt[0] = x_pt
 		pt[1] = y_pt
+	
 
 	
 	
