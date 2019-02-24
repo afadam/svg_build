@@ -1,4 +1,3 @@
-import random
 
 plt0 = ["#283d3b", "#edddd4", "#197278", "#c44536", "#772e25"]
 plt1 = ["#deffb7", "#98dfaf", "#5fb49c", "#414288", "#682d63"]
@@ -14,9 +13,3 @@ plt9 = ["#52414c", "#596157", "#5b8c5a", "#cfd186", "#e3655b"]
 palettes = [
 	plt0, plt1, plt2, plt3, plt4, plt5, plt6, plt7, plt8, plt9
 ]
-
-def r_colour():
-	colour = hex(random.randrange(1,16777215))
-	colour_string = '"' + str(colour) + '"'
-	
-plt_r = [r_colour(), r_colour(), r_colour(), r_colour(), r_colour()] 

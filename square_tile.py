@@ -16,6 +16,7 @@ svg_build.start(name, 0, x_in, y_in, "white")
 
 shapes = []
 root_square = shape.polygon([0,0],[128,0],4)
+shape.move(root_square)
 shapes.append(root_square)
 origin = shape.centre(root_square)
 rt1 = root_square[3]

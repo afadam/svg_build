@@ -5,7 +5,7 @@ def start(
 ):
 	canvas_file = (
 		'output/' + name + "_l" + str(layer) + '_' + str(x) + 'x' + str(y) + '.svg'
-	)	
+		)	
 	new_layer = open(canvas_file, 'w')
 	canvas.append(new_layer)
 	
