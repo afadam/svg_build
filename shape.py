@@ -27,10 +27,23 @@ def mid_point(
 def divide_line(
 	pt1, pt2, factor
 ):
-	# find number of cuts
-	# find points along line
-	print("hello")
+	pt_list = [pt1]
 	
+	x_inc = (pt1[0] - pt2[0]) / factor
+	y_inc = (pt1[1] - pt2[1]) / factor
+	
+	position = [pt1[0], pt1[1]]
+	
+	for new_pt in range (factor - 2):
+		position[0] -= x_inc
+		position[1] -= y_inc
+
+		pt_list.append(position)
+	
+	pt_list.append(pt2)
+	
+	return pt_list
+
 def polygon(
 	rt_s, rt_f, sides, flip=False
 ):
