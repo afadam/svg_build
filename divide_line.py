@@ -1,0 +1,46 @@
+import datetime
+import svg_build
+import shape
+
+title = "divide"
+x_in = 1920
+y_in = 1080
+origin = [960, 540]
+
+time = datetime.datetime.now()
+string_time = time.strftime("%d-%m-%Y-%H-%M-%S")
+
+name = (title + "_" + string_time)
+
+svg_build.start(name, 0, x_in, y_in, "white")
+
+shape.divide_line([-2,-2], [2,2], 3)
+
+sides = 6
+division = 30
+
+hexagon = shape.centre_polygon(origin, sides, 480)
+
+perimeter_list = []
+flick = 0
+
+#svg_build.generate_text(origin, "hello", size=12)
+
+for x in range (0, len(hexagon)):
+	#svg_build.generate_text(hexagon[x], x, size=96)
+	line = shape.divide_line(hexagon[x], hexagon[(x+1) % len(hexagon)], division)
+	del line[-1]
+	perimeter_list.extend(line)
+
+	
+#svg_build.generate_path(perimeter_list, st_w=5)
+
+print(perimeter_list)
+
+for y in range (0, len(perimeter_list)):
+	svg_build.generate_text(perimeter_list[y], y, size=36)
+
+
+#for z in range (0, len(perimeter_list)):
+#	svg_build.generate_text(perimeter_list[z], z, size=25)
+svg_build.end()
