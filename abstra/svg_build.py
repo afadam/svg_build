@@ -4,21 +4,33 @@ in them when given points and point lists.
 point - [x,y]
 point list - [[x,y],[x1,y1],...,[xn,yn]]
 """
+
+import datetime
+import os
+
 layers = [] 
 
-def start(name,	layer, x, y, fill):
+def start(title, layer, x, y, fill="none"):
 	"""Create a new .svg file, open and assign it as a layer. 
 	Open the <svg> tag with height and width and draw a background fill.
 
-    name -- name of the drawing
+    title -- name of the drawing
     layer -- layer of the drawing
 	x,y -- height and width of svg file
 	fill -- background colour
     """
 	# build a string for the layer's filename
+	
+	time = datetime.datetime.now()	
+	string_time = time.strftime("%d-%m-%Y-%H-%M-%S")
+	
+	try:
+		os.stat('output/' + title)
+	except:
+		os.mkdir('output/' + title)
+		
 	layer_file = (	
-		'output/' + name + "_l" + str(layer) + 
-		'_' + str(x) + 'x' + str(y) + '.svg'
+		'output/' + title + '/' + 'image' + str(layer).zfill(4) + '.svg'
 		)	
 	
 	new_layer = open(layer_file, 'w')
@@ -31,7 +43,11 @@ def start(name,	layer, x, y, fill):
 		'<rect width="100%" height="100%" fill="' + fill + '" />\n'                  
 	)
 
-def end():	
+def end(layer):
+	layers[layer].write('</svg>')
+	layers[layer].close
+	
+def end_all():
 	"""Close all layer's svg tags and close all layer files.
 	"""
 	for layer in range(len(layers)):
@@ -56,7 +72,7 @@ def generate_circle(centre, r, fill = "none", st_w=1, st="black", layer=0):
 		'" fill="' + fill + '" />\n'
 	)
 	
-def generate_line(pt1, pt2, st_w, st_, layer):
+def generate_line(pt1, pt2, st_w=1, st="black", layer=0):
 	"""Draw a line between two given points using <line> tag & apply formatting
 	
 	pt1 -- start point

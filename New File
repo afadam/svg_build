@@ -1,0 +1,2 @@
+ffmpeg -framerate 30 -pattern_type glob -i '*.png' out.mkv
+for i in *.svg; do convert "$i" "${i%.svg}.png"; done

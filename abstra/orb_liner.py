@@ -8,33 +8,30 @@ x_in = 1024
 y_in = 1024
 origin = [512,512]
 
-time = datetime.datetime.now()
-string_time = time.strftime("%d-%m-%Y-%H-%M-%S")
+layer = 0
 
-name = (title + "_" + string_time)
+for z in range (0, 360, 5):
+	svg_build.start(title, layer, x_in, y_in, palettes.plt1[1])
+ 
+	sides = 20
 
-svg_build.start(name, 0, x_in, y_in, palettes.plt1[1])
+	hexagon = shape.centre_polygon(origin, sides, 368)
 
-sides = 20
+	perimeter_list = []
 
-hexagon = shape.centre_polygon(origin, sides, 368)
+	for x in range (0, len(hexagon)):
+		line = shape.divide_line(hexagon[x-1], hexagon[x], 6)
+		perimeter_list.extend(line)
 
-perimeter_list = []
+	for y in range (1, len(perimeter_list)):	
+		svg_build.generate_path([perimeter_list[y],perimeter_list[int(len(perimeter_list)/2) - y]],st_w=5,st=palettes.plt1[2],layer=layer)
 
-for x in range (0, len(hexagon)):
-	line = shape.divide_line(hexagon[x-1], hexagon[x], 6)
-	perimeter_list.extend(line)
+	shape.rotate(perimeter_list, z, shape.centre(perimeter_list))
 
-print(perimeter_list)
-print(len(perimeter_list))
 
-for y in range (1, len(perimeter_list)):	
-	svg_build.generate_path([perimeter_list[y],perimeter_list[int(len(perimeter_list)/2) - y]],st_w=5,st=palettes.plt1[2])
+	for y in range (1, len(perimeter_list)):	
+		svg_build.generate_path([perimeter_list[y],perimeter_list[int(len(perimeter_list)/2) - y]],st_w=3,st=palettes.plt1[3],layer=layer)
 	
-shape.rotate(perimeter_list, 60, shape.centre(perimeter_list))
-
-
-for y in range (1, len(perimeter_list)):	
-	svg_build.generate_path([perimeter_list[y],perimeter_list[int(len(perimeter_list)/2) - y]],st_w=3,st=palettes.plt1[3])
+	layer = layer + 1
 	
 svg_build.end()
