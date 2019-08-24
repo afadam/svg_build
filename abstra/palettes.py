@@ -11,6 +11,7 @@ plt7 = ["#161032", "#faff81", "#ffc53a", "#e06d06", "#b26700"]
 plt8 = ["#3c91e6", "#342e37", "#a2d729", "#fafffd", "#fa824c"]
 plt9 = ["#52414c", "#596157", "#5b8c5a", "#cfd186", "#e3655b"]
 plt10 = ["#b5ca8d", "#f0e660", "#ff9200", "#ac5b3c", "#ff3500"]
+rainbow = []
 palettes = [
 	plt0, plt1, plt2, plt3, plt4, plt5, plt6, plt7, plt8, plt9
 ]

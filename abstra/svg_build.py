@@ -10,7 +10,7 @@ import os
 
 layers = [] 
 
-def start(title, layer, x, y, fill="none"):
+def start(title, layer, x, y, fill="none", anim=False):
 	"""Create a new .svg file, open and assign it as a layer. 
 	Open the <svg> tag with height and width and draw a background fill.
 
@@ -28,12 +28,18 @@ def start(title, layer, x, y, fill="none"):
 		os.stat('output/' + title)
 	except:
 		os.mkdir('output/' + title)
-		
-	layer_file = (	
-		'output/' + title + '/' + 'image' + str(layer).zfill(4) + '.svg'
-		)	
 	
+	if (anim==True):
+		layer_file = (	
+			'output/' + title + '/' + 'image' + str(layer).zfill(4) + '.svg'
+			)	
+	else:
+		layer_file = (	
+			'output/' + title + string_time + '.svg'
+			)
+
 	new_layer = open(layer_file, 'w')
+	
 	layers.append(new_layer)
 
 	layers[layer].write(
