@@ -16,7 +16,7 @@ name = (title + "_" + string_time)
 
 svg_build.start(name, 0, x_in, y_in, palettes.plt8[1])
 
-sides = 11
+sides = 6
 
 root_shape = shape.centre_polygon(origin, sides, (y_in / 2.2))
 
@@ -54,27 +54,6 @@ def kernel(kernel_list, shape_sides, recurse):
 			kernel(slice(segment), shape_sides, recurse - 1)
 
 i = slice(root_shape)
-kernel(i, sides, 3)
+kernel(i, sides, 5)
 
-root_shape = shape.centre_polygon(origin, 9, (y_in / 2.4))
-
-i = slice(root_shape)
-kernel(i, sides, 3)
-
-root_shape = shape.centre_polygon(origin, 7, (y_in / 2.8))
-
-i = slice(root_shape)
-kernel(i, sides, 3)
-
-root_shape = shape.centre_polygon(origin, 5, (y_in / 3.5))
-
-i = slice(root_shape)
-kernel(i, sides, 3)
-
-
-
-
-svg_build.end()
-				   
-				   
-				 #  notes[note % len(notes)]
+svg_build.end()				

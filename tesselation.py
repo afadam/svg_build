@@ -17,8 +17,8 @@ svg_build.start(name, 0, x_in, y_in, "white")
 
 pattern = [[3,2,4],[0,3,3],[2,1,4],[3,2,3],[2,1,4],[0,3,6]]
 column = ["a","b"]
-palette = palettes.plt10
-size = 23
+palette = palettes.plt11
+size = 48
 
 p_i = 0
 y_c = 1
@@ -70,14 +70,14 @@ while origin[0] < x_in + size:
 for _ in range(len(shapes)):
 	if len(shapes[_]) == 6:
 		svg_build.generate_path(
-			shapes[_], fill=palette[0], st_w=4, st=palette[3])
+			shapes[_], fill=palette[0], st_w=4, st=palette[4])
 		
 	elif len(shapes[_]) == 4:
 		svg_build.generate_path(
-			shapes[_], fill=palette[2], st_w=4, st=palette[3])
+			shapes[_], fill=palette[1], st_w=4, st=palette[4])
 		
 	elif len(shapes[_]) == 3:
 		svg_build.generate_path(
-			shapes[_], fill=palette[4], st_w=4, st=palette[3])
+			shapes[_], fill=palette[3], st_w=4, st=palette[4])
 
 svg_build.end()
