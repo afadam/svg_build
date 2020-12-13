@@ -40,13 +40,21 @@ def rotate(pt_list, degrees, axis=[0,0]):
 		pt[0] = x_pt
 		pt[1] = y_pt
 		
-def scale(pt_list, origin, x_scale, y_scale):
+def scale(pt_list, scale):
 	"""
 	pt_list, 
-	origin, 
-	x_scale, y_scale
+	scale
 	"""
 	print("scale function")
+	origin = centre(pt_list)
+	new_polygon = []
+	
+	for pt in range(0, len(pt_list)):
+		
+		new_pt = mid_point(pt_list[pt], origin)
+		new_polygon.append(new_pt)
+	
+	return new_polygon
 
 		
 def centre(pt_list):
@@ -67,13 +75,13 @@ def centre(pt_list):
 		
 	return centre
 
-def mid_point(pt1, pt2):
+def mid_point(pt1, pt2, factor=2):
 	"""Find and return the point halfway between two other points
 	
 	pt1, pt2
 	"""
-	x_mid = (pt1[0] + pt2[0]) / 2
-	y_mid = (pt1[1] + pt2[1]) / 2
+	x_mid = (pt1[0] + pt2[0]) / factor
+	y_mid = (pt1[1] + pt2[1]) / factor
 	
 	return [x_mid, y_mid]
 
