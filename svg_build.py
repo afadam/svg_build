@@ -116,3 +116,22 @@ def generate_text(location, message, size, layer=0):
 	layers[layer].write(
 		str(message) + '</text>\n'
 	)
+	
+		
+def point_plotter(polygon, size):
+	
+	for pt in range(0, len(polygon)):
+		print(pt)
+		point = polygon[pt]
+		ptx_str = str(round(point[0]))
+		pty_str = str(round(point[1]))
+	#	ptx_str = str(round(ptx_str, 0))
+		#pty_str
+		generate_text(point, ptx_str + ", " + pty_str, size)
+		
+		
+		
+def point_spotter(polygon, size=2, pt_fill="black"):
+	
+	for pt in range(0, len(polygon)):
+		generate_circle(polygon[pt], size, fill = pt_fill)

@@ -6,6 +6,7 @@ def firein(polygon, levels):
 	origin = shape.centre(polygon)
 	
 	for pt in range(0, len(polygon)):
+		
 		axle = shape.divide_line(polygon[pt], origin, levels, last_pt=False)
 		
 		for new_pt in range(0, len(axle)):
@@ -23,7 +24,7 @@ def firein(polygon, levels):
 	
 	return polygon_list
 
-def kernel(kernel_list):
+def kernel(kernel_list, recurse):
 	
 	sides = len(kernel_list)
 	
@@ -35,8 +36,12 @@ def kernel(kernel_list):
 		segment.append(kernel_list[(x - 1) % sides])
 		segment.append(kernel_list[(x) % sides])
 		
-		segment_list.append(segment)
-		
+		if recurse > 0:
+			recurse_n = recurse - 1
+			kernel(segment, recurse_n)
+		else:
+			segment_list.append(segment)
+				   
 	return segment_list
 
 def slice(slice_shape):
@@ -72,7 +77,16 @@ def grid(x):
 			point = [x*x_size, y*y_size] 
 			target_list.append(point)	
 
+def star(polygon):
+	
+	new_polygon = []
+	origin = shape.centre(polygon)
+	
+	for edge in range(0, len(polygon)):
+		segment = [polygon[edge],origin,polygon[(edge+1) % len(polygon)]]
 		
-
-					
-
+		middle = shape.centre(segment)
+		new_polygon.append(segment[0])
+		new_polygon.append(middle)
+		
+	return new_polygon
